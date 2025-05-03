@@ -11,3 +11,7 @@
 ## 0.0.2
 
 * Lint fixes in Example code
+
+## 0.0.3
+
+* Code formatting
