@@ -25,7 +25,7 @@ dependencies:
 Import the package:
 
 ```dart
-import 'package:flutter_dynamic_scroll_spy/flutter_dynamic_scroll_spy.dart';
+import 'package:flutter_dynamic_scroll_spy/scroll_spy_flutter.dart';
 ```
 
 Basic usage:
@@ -98,7 +98,7 @@ Here's a complete example showing how to use the widget in a documentation-style
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_dynamic_scroll_spy/flutter_dynamic_scroll_spy.dart';
+import 'package:flutter_dynamic_scroll_spy/scroll_spy_flutter.dart';
 
 void main() {
   runApp(const MyApp());
