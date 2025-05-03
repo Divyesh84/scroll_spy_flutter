@@ -136,28 +136,40 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
     int? mostVisibleIndex;
     double maxVisibleHeight = 0;
 
-    _contentKeysMap.forEach((index, key) {
-      final itemContext = key.currentContext;
-      if (itemContext != null) {
-        final itemBox = itemContext.findRenderObject() as RenderBox?;
-        if (itemBox != null) {
-          final itemOffset =
-              itemBox.localToGlobal(Offset.zero, ancestor: ancestorBox);
-          final itemTop = itemOffset.dy;
-          final itemBottom = itemTop + itemBox.size.height;
+    // Check if we're at the start or end of the scroll
+    bool isAtStart = _contentController.position.pixels <= 1;
+    bool isAtEnd = _contentController.position.pixels >=
+        _contentController.position.maxScrollExtent - 1;
 
-          final visibleTop = itemTop.clamp(0.0, ancestorBox.size.height);
-          final visibleBottom = itemBottom.clamp(0.0, ancestorBox.size.height);
-          final visibleHeight =
-              (visibleBottom - visibleTop).clamp(0.0, itemBox.size.height);
+    if (isAtStart) {
+      mostVisibleIndex = 0;
+    } else if (isAtEnd) {
+      mostVisibleIndex = widget.contentList.length - 1;
+    } else {
+      _contentKeysMap.forEach((index, key) {
+        final itemContext = key.currentContext;
+        if (itemContext != null) {
+          final itemBox = itemContext.findRenderObject() as RenderBox?;
+          if (itemBox != null) {
+            final itemOffset =
+                itemBox.localToGlobal(Offset.zero, ancestor: ancestorBox);
+            final itemTop = itemOffset.dy;
+            final itemBottom = itemTop + itemBox.size.height;
 
-          if (visibleHeight > maxVisibleHeight) {
-            maxVisibleHeight = visibleHeight;
-            mostVisibleIndex = index;
+            final visibleTop = itemTop.clamp(0.0, ancestorBox.size.height);
+            final visibleBottom =
+                itemBottom.clamp(0.0, ancestorBox.size.height);
+            final visibleHeight =
+                (visibleBottom - visibleTop).clamp(0.0, itemBox.size.height);
+
+            if (visibleHeight > maxVisibleHeight) {
+              maxVisibleHeight = visibleHeight;
+              mostVisibleIndex = index;
+            }
           }
         }
-      }
-    });
+      });
+    }
 
     if (_currentVisibleIndex != mostVisibleIndex && mostVisibleIndex != null) {
       setState(() {
