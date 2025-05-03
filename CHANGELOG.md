@@ -6,4 +6,8 @@
   * Smooth scrolling to content when navigation items are clicked
   * Customizable styles for active and inactive navigation items
   * Flexible layout with customizable width ratios
-  * Callbacks for navigation item selection and content visibility changes 
+  * Callbacks for navigation item selection and content visibility changes
+
+## 0.0.2
+
+* Lint fixes in Example code

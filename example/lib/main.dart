@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dynamic_scroll_spy/scroll_spy_flutter.dart';
+import 'package:scroll_spy_flutter/scroll_spy_flutter.dart';
 
 void main() {
   runApp(const MyApp());
