@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
 /// A widget that implements a scroll spy functionality with a navigation bar and content area.
-/// 
+///
 /// The widget displays a list of headings in a navigation bar on the left side and
 /// corresponding content on the right side. As the user scrolls through the content,
 /// the widget automatically highlights the corresponding heading in the navigation bar.
 /// Users can also click on headings to scroll to the corresponding content.
-/// 
+///
 /// Example usage:
 /// ```dart
 /// DynamicScrollSpyWidget(
@@ -25,7 +25,7 @@ import 'package:collection/collection.dart';
 /// ```
 class DynamicScrollSpyWidget extends StatefulWidget {
   /// Creates a DynamicScrollSpyWidget.
-  /// 
+  ///
   /// The [headingList] and [contentList] must have the same length.
   const DynamicScrollSpyWidget({
     required this.headingList,
@@ -41,16 +41,16 @@ class DynamicScrollSpyWidget extends StatefulWidget {
     this.navigationFlex = 1,
     this.contentFlex = 3,
     super.key,
-  }) : assert(headingList.length == contentList.length, 
-             'headingList and contentList must have the same length');
+  }) : assert(headingList.length == contentList.length,
+            'headingList and contentList must have the same length');
 
   /// List of headings to show in the navigation bar.
-  /// 
+  ///
   /// Each heading corresponds to a content widget at the same index in [contentList].
   final List<String> headingList;
 
   /// List of widgets corresponding to each heading.
-  /// 
+  ///
   /// Each widget is displayed in the content area and corresponds to a heading
   /// at the same index in [headingList].
   final List<Widget> contentList;
@@ -74,22 +74,22 @@ class DynamicScrollSpyWidget extends StatefulWidget {
   final double? contentSpacing;
 
   /// Callback function called when a heading is selected/clicked.
-  /// 
+  ///
   /// The callback receives the index of the selected heading.
   final Function(int index)? onHeadingSelected;
 
   /// Callback function called when a content item becomes most visible in the viewport.
-  /// 
+  ///
   /// The callback receives the index of the most visible content item.
   final Function(int index)? onContentVisible;
 
   /// Flex value for the navigation bar section (default: 1).
-  /// 
+  ///
   /// Used to control the width ratio of the navigation bar relative to the content area.
   final int navigationFlex;
 
   /// Flex value for the content area section (default: 3).
-  /// 
+  ///
   /// Used to control the width ratio of the content area relative to the navigation bar.
   final int contentFlex;
 
@@ -141,13 +141,15 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
       if (itemContext != null) {
         final itemBox = itemContext.findRenderObject() as RenderBox?;
         if (itemBox != null) {
-          final itemOffset = itemBox.localToGlobal(Offset.zero, ancestor: ancestorBox);
+          final itemOffset =
+              itemBox.localToGlobal(Offset.zero, ancestor: ancestorBox);
           final itemTop = itemOffset.dy;
           final itemBottom = itemTop + itemBox.size.height;
 
           final visibleTop = itemTop.clamp(0.0, ancestorBox.size.height);
           final visibleBottom = itemBottom.clamp(0.0, ancestorBox.size.height);
-          final visibleHeight = (visibleBottom - visibleTop).clamp(0.0, itemBox.size.height);
+          final visibleHeight =
+              (visibleBottom - visibleTop).clamp(0.0, itemBox.size.height);
 
           if (visibleHeight > maxVisibleHeight) {
             maxVisibleHeight = visibleHeight;
@@ -188,7 +190,7 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
 
   Future<void> _scrollToHeading(int index) async {
     if (index < 0 || index >= _headingKeys.length) return;
-    
+
     final headingContext = _headingKeys[index]?.currentContext;
     if (headingContext != null) {
       await Scrollable.ensureVisible(
@@ -201,7 +203,7 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
 
   Future<void> _scrollToContent(int index) async {
     if (index < 0 || index >= _contentKeysMap.length) return;
-    
+
     final itemContext = _contentKeysMap[index]?.currentContext;
     if (itemContext != null) {
       _isProgrammaticScroll = true;
@@ -273,4 +275,4 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
       ],
     );
   }
-} 
+}
