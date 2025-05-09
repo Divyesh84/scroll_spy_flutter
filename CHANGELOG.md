@@ -1,3 +1,7 @@
+## 0.0.6
+
+* Code Formatting
+
 ## 0.0.5
 
 * Used visiblePercentage instead of visibleHeight in order to handle the scenarios where the content
