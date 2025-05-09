@@ -11,6 +11,9 @@ A Flutter widget that implements scroll spy functionality with a navigation bar 
 - Supports both automatic and programmatic scrolling
 - Callbacks for navigation item selection and content visibility changes
 
+<p><a href="https://buymeacoffee.com/divyeshdevmurari"> <img  src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="divyeshdevmurari" /></a></p><br><br>
+
+
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
