@@ -134,7 +134,7 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
     if (ancestorBox == null) return;
 
     int? mostVisibleIndex;
-    double maxVisibleHeight = 0;
+    double maxVisibilityPercentage = 0;
 
     // Check if we're at the start or end of the scroll
     bool isAtStart = _contentController.position.pixels <= 1;
@@ -161,9 +161,12 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
                 itemBottom.clamp(0.0, ancestorBox.size.height);
             final visibleHeight =
                 (visibleBottom - visibleTop).clamp(0.0, itemBox.size.height);
+            
+            // Calculate visibility percentage
+            final visibilityPercentage = visibleHeight / itemBox.size.height;
 
-            if (visibleHeight > maxVisibleHeight) {
-              maxVisibleHeight = visibleHeight;
+            if (visibilityPercentage > maxVisibilityPercentage) {
+              maxVisibilityPercentage = visibilityPercentage;
               mostVisibleIndex = index;
             }
           }
