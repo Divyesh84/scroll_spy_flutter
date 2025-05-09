@@ -1,6 +1,6 @@
 name: scroll_spy_flutter
 description: A Flutter widget that implements scroll spy functionality
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/Divyesh84/scroll_spy_flutter
 
 environment:
