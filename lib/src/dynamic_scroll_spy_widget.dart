@@ -161,7 +161,7 @@ class _DynamicScrollSpyWidgetState extends State<DynamicScrollSpyWidget> {
                 itemBottom.clamp(0.0, ancestorBox.size.height);
             final visibleHeight =
                 (visibleBottom - visibleTop).clamp(0.0, itemBox.size.height);
-            
+
             // Calculate visibility percentage
             final visibilityPercentage = visibleHeight / itemBox.size.height;
 
